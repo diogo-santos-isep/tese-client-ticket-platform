@@ -1,14 +1,15 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a>
+          <!-- <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a> -->
+          {{configurations.applicationName}}
         </div>
-        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+        <!-- <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
-        </button>
+        </button> -->
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
             <ul class="navbar-nav">
                 <!-- <li class="nav-item dropdown">
@@ -34,19 +35,19 @@
                             <span class="d-lg-none d-md-block">Account</span>
                         </p>
                     </a>
-                </li> -->
+                </li>
                 <li class="nav-item dropdown" *ngIf="loggedUser">
                     <a class="nav-link" href="javascript:void(0)" id="userOptionsDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <!-- <i class="material-icons">notifications</i> -->
+                        <i class="material-icons">notifications</i>
                         <img [src]="getImage()" style="max-width: 25px;max-height: 25px;"/>
                         <span> &nbsp;{{loggedUser.name}}</span>
-                        <!-- <span class="notification">5</span> -->
+                        <span class="notification">5</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userOptionsDropdown">
                         <a class="dropdown-item" href="javascript:void(0)">Perfil</a>
                         <a class="dropdown-item" href="javascript:void(0)">Logout</a>
                     </div>
-                </li>
+                </li> -->
             </ul>
         </div>
     </div>

@@ -9,7 +9,6 @@ import { Observable, throwError } from 'rxjs';
 })
 export class GlobalHttpService {
   stsUrl: string = "https://localhost:5000/";
-  userServiceUrl: string = "https://localhost:5002/";
   configurationsServiceUrl: string = "https://localhost:5004/";
 
   getRequestOptions() {

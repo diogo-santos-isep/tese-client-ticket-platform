@@ -10,14 +10,9 @@ import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
-import { UserSaveComponent } from 'app/user/user-save/user-save.component';
-import { UserListComponent } from 'app/user/user-list/user-list.component';
-import { UserService } from 'app/user/user.service';
 import { AlertService } from 'app/alert/alert.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { DepartmentSaveComponent } from 'app/configuration/department/department-save/department-save.component';
-import { DepartmentListComponent } from 'app/configuration/department/department-list/department-list.component';
-import { ConfigurationComponent } from 'app/configuration/configuration/configuration.component';
+import { EntryPageComponent } from 'app/entry-page/entry-page.component';
 
 @NgModule({
   imports: [
@@ -35,13 +30,9 @@ import { ConfigurationComponent } from 'app/configuration/configuration/configur
   ],
   declarations: [
     DashboardComponent,
-    UserListComponent,
-    UserSaveComponent,
-    DepartmentListComponent,
-    DepartmentSaveComponent,
-    ConfigurationComponent,
+    EntryPageComponent
   ],
-  providers:[UserService]
+  providers:[]
 })
 
 export class AdminLayoutModule {}

@@ -16,11 +16,8 @@ import {
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
 import { GlobalHttpService } from './global-http.service';
-import { AuthGuard } from './authentication/auth.guard';
 import { AlertService } from './alert/alert.service';
-import { LoginComponent } from './layouts/login/login.component';
-import { DepartmentSaveComponent } from './configuration/department/department-save/department-save.component';
-import { ConfigurationComponent } from './configuration/configuration/configuration.component';
+import { AuthenticationService } from './authentication/authentication.service';
 
 @NgModule({
   imports: [
@@ -39,9 +36,8 @@ import { ConfigurationComponent } from './configuration/configuration/configurat
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    LoginComponent
   ],
-  providers: [AlertService,AuthGuard,GlobalHttpService,HttpClient],
+  providers: [AlertService,GlobalHttpService,HttpClient,AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
