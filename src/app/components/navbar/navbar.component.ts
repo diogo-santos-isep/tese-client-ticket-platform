@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { GlobalHttpService } from 'app/global-http.service';
 import { GlobalService } from 'app/global.service';
 import { Configuration } from 'models/Configuration';
+import { readFile } from 'fs';
 
 @Component({
     selector: 'app-navbar',
@@ -19,10 +20,17 @@ export class NavbarComponent implements OnInit {
     private toggleButton: any;
     private sidebarVisible: boolean;
     configurations: Configuration;
+    user: any;
 
     constructor(location: Location, private element: ElementRef, private router: Router) {
         this.location = location;
         this.sidebarVisible = false;
+    }
+
+    getUser() {
+        if (!this.user)
+            this.user = GlobalService.getUser();
+        return this.user;
     }
 
     ngOnInit() {
