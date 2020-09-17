@@ -10,6 +10,7 @@ import { Observable, throwError } from 'rxjs';
 export class GlobalHttpService {
   stsUrl: string = "https://localhost:5000/";
   configurationsServiceUrl: string = "https://localhost:5004/";
+  ticketInfoServiceUrl: string = "https://localhost:5006/";
 
   getRequestOptions() {
     var token = localStorage.getItem("token");

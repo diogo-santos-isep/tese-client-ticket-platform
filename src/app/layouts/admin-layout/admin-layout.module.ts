@@ -13,6 +13,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { AlertService } from 'app/alert/alert.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { EntryPageComponent } from 'app/entry-page/entry-page.component';
+import { TicketListComponent } from 'app/tickets/ticket-list/ticket-list.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { EntryPageComponent } from 'app/entry-page/entry-page.component';
   ],
   declarations: [
     DashboardComponent,
-    EntryPageComponent
+    EntryPageComponent,
+    TicketListComponent,
   ],
   providers:[]
 })

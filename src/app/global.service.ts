@@ -9,6 +9,7 @@ import { Configuration } from 'models/Configuration';
 export class GlobalService {
   private static TOKENSTORAGE: string = "tokenStorage";
   private static CONFIGURATIONSTORAGE: string = "configurationStorage";
+  private static USERSTORAGE: string = "userStorage";
 
   static getToken(): string {
     return localStorage.getItem(this.TOKENSTORAGE);
@@ -20,6 +21,14 @@ export class GlobalService {
 
   static getConfigurations(): Configuration {
     return JSON.parse(localStorage.getItem(this.CONFIGURATIONSTORAGE));
+  }
+
+  static setUser(data: any) {
+    localStorage.setItem(this.USERSTORAGE, JSON.stringify(data));
+  }
+
+  static getUser(): any {
+    return JSON.parse(localStorage.getItem(this.USERSTORAGE));
   }
 
   static setToken(access_token: string) {

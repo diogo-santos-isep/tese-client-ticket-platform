@@ -1,0 +1,45 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-primary">
+                    <h4 class="card-title">
+                        Tickets
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" style="margin-bottom: 0;">
+                            <thead>
+                                <tr>
+                                    <th style="width:10%">Código</th>
+                                    <th style="width:20%">Assunto</th>
+                                    <th style="width:25%">Descrição</th>
+                                    <th style="width:25%">Estado</th>
+                                    <th style="width:20%">Colaborador Atribuído</th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="!loading">
+                                <tr *ngIf="list.length == 0">
+                                    <td colspan="100" style="text-align:center">
+                                        Não existem tickets criados por si
+                                    </td>
+                                </tr>
+                                <tr *ngFor="let row of list"  style="cursor:pointer" [routerLink]="['save', row.id]">
+                                    <td>{{row.code}}</td>
+                                    <td>{{row.subject}}</td>
+                                    <td>{{row.description}}</td>
+                                    <td>{{stateEnum.enum[row.state]}}</td>
+                                    <td>{{row.collaboratorName}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <mat-paginator [length]="count" [pageSize]="filter.pageSize"
+                            [pageSizeOptions]="[5, 10, 25, 50]" (page)="paginationChanged($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

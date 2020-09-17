@@ -1,17 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
-        <div class="navbar-wrapper">
-          <!-- <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a> -->
-          {{configurations.applicationName}}
-        </div>
+        <a class="navbar-wrapper" [routerLink]="['/entryPage']" routerLinkActive="active">
+            <!-- <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a> -->
+            {{configurations.applicationName}}
+        </a>
         <!-- <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
         </button> -->
-        <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav">
+                <a class="nav-link" [routerLink]="['/ticket/list']" routerLinkActive="active">
+                    <span>Tickets</span>
+                </a>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">notifications</i>
