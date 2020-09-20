@@ -13,7 +13,7 @@ export class AppComponent {
 
   loading: boolean = true;
   constructor(private _authService: AuthenticationService, private configService: ConfigurationService) {
-    if (!GlobalService.getToken() || !GlobalService.getConfigurations()) {
+    // if (!GlobalService.getToken() || !GlobalService.getConfigurations()) {
       _authService.login()
         .subscribe(data => {
           GlobalService.setToken(data.access_token);
@@ -23,7 +23,7 @@ export class AppComponent {
               this.loading = false;
             });
         });
-    } else
-      this.loading = false;
+    // } else
+    //   this.loading = false;
   }
 }

@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { GlobalHttpService } from 'app/global-http.service';
 import { GlobalService } from 'app/global.service';
 import { Configuration } from 'models/Configuration';
-import { readFile } from 'fs';
 
 @Component({
     selector: 'app-navbar',

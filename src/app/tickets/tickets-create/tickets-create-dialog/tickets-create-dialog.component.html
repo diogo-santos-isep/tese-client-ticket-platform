@@ -1,0 +1,16 @@
+<h4 mat-dialog-title style="text-align: center;">Criar Ticket</h4>
+<div mat-dialog-actions style="margin-top: 15px;">
+
+    <button mat-raised-button class="btn btn-info btn-sm mat-raised-button pointer pull-left"
+        [routerLink]="['/ticket/create-from-message']" routerLinkActive="active" 
+        matTooltip="Enviar uma mensagem a um colaborador, ticket será criado automaticamente">
+        <i class="material-icons">message</i>
+        Enviar Mensagem
+    </button>
+
+    <button mat-raised-button class="btn btn-info btn-sm mat-raised-button pointer pull-right"
+        [routerLink]="['/ticket/create']" routerLinkActive="active">
+        <i class="material-icons">add</i>
+        Criar Ticket
+    </button>
+</div>

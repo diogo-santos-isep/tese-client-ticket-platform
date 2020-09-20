@@ -3,6 +3,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { AlertService } from './alert/alert.service';
 import { of } from 'rxjs/internal/observable/of';
 import { Observable, throwError } from 'rxjs';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class GlobalHttpService {
   ticketInfoServiceUrl: string = "https://localhost:5006/";
 
   getRequestOptions() {
-    var token = localStorage.getItem("token");
+    var token = GlobalService.getToken();
     var headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + token

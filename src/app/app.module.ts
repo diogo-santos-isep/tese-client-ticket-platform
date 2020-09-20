@@ -18,7 +18,6 @@ import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http'
 import { GlobalHttpService } from './global-http.service';
 import { AlertService } from './alert/alert.service';
 import { AuthenticationService } from './authentication/authentication.service';
-import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 
 @NgModule({
   imports: [
