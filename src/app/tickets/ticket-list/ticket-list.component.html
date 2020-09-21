@@ -25,7 +25,7 @@
                                         Não existem tickets criados por si
                                     </td>
                                 </tr>
-                                <tr *ngFor="let row of list"  style="cursor:pointer" [routerLink]="['save', row.id]">
+                                <tr *ngFor="let row of list"  style="cursor:pointer" [routerLink]="['/ticket/save', row.id]">
                                     <td>{{row.code}}</td>
                                     <td>{{row.subject}}</td>
                                     <td>{{row.description}}</td>

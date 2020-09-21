@@ -7,8 +7,10 @@ import { TicketsCreateFromMessageComponent } from 'app/tickets/tickets-create/ti
 import { TicketsCreateComponent } from 'app/tickets/tickets-create/tickets-create/tickets-create.component';
 
 export const AdminLayoutRoutes: Routes = [
-    { path: 'entryPage/:userId/:userName/:userEmail', component: EntryPageComponent },
+    { path: 'entry/:userId/:userName/:userEmail', component: EntryPageComponent },
+    { path: 'dashboard', component: DashboardComponent },
     { path: 'ticket/list', component: TicketListComponent },
     { path: 'ticket/create-from-message', component: TicketsCreateFromMessageComponent },
     { path: 'ticket/create', component: TicketsCreateComponent },
+    { path: 'ticket/save/:id', component: TicketsCreateComponent },
 ];

@@ -6,11 +6,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 const routes: Routes =[
+  // {
+  //   path: ':userId/:userName/:userEmail',
+  //   redirectTo: 'entryPage/:userId/:userName/:userEmail',
+  //   pathMatch: 'full',
+  // }, 
   {
-    path: ':userId/:userName/:userEmail',
-    redirectTo: 'entryPage/:userId/:userName/:userEmail',
-    pathMatch: 'full',
-  }, {
     path: '',
     component: AdminLayoutComponent,
     children: [{

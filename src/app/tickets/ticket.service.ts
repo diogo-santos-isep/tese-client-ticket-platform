@@ -13,6 +13,8 @@ import { GlobalService } from 'app/global.service';
 export class TicketService {
   SEARCHTICKETSURL_1: string = "api/client/";
   SEARCHTICKETSURL_2: string = "/ticket/search";
+  GETTICKET_1: string = "api/client/";
+  GETTICKET_2: string = "/ticket/";
   TICKETURL: string = "api/ticket";
 
   constructor(private _http: HttpClient, private _globalHttp: GlobalHttpService) { }
@@ -29,6 +31,15 @@ export class TicketService {
   create(ticket: Ticket): Observable<any> {
     var url = this._globalHttp.ticketInfoServiceUrl + this.TICKETURL;
     return this._http.post(url, ticket, this._globalHttp.getRequestOptions())
+      .pipe(
+        map(res => res),
+        catchError(error => this._globalHttp.handleError(error))
+      );
+  }
+  getTicket(id: string) : Observable<any> {
+    var clientid = GlobalService.getUser().id;
+    var url = this._globalHttp.ticketInfoServiceUrl + this.GETTICKET_1 + clientid + this.GETTICKET_2 + id;
+    return this._http.get(url, this._globalHttp.getRequestOptions())
       .pipe(
         map(res => res),
         catchError(error => this._globalHttp.handleError(error))

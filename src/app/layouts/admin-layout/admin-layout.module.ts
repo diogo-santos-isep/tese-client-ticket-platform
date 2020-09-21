@@ -18,6 +18,7 @@ import { TicketsCreateComponent } from 'app/tickets/tickets-create/tickets-creat
 import { TicketListComponent } from 'app/tickets/ticket-list/ticket-list.component';
 import { TicketsCreateDialogComponent } from 'app/tickets/tickets-create/tickets-create-dialog/tickets-create-dialog.component';
 import { TicketsCreateFromMessageComponent } from 'app/tickets/tickets-create/tickets-create-from-message/tickets-create-from-message.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { TicketsCreateFromMessageComponent } from 'app/tickets/tickets-create/ti
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDividerModule, 
     MatDialogModule,
     MatSelectModule,
     MatPaginatorModule,

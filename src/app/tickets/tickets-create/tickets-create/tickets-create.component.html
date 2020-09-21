@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div [ngClass]="{'col-md-12': !ticket.id, 'col-md-8': ticket.id}" *ngIf="!loading">
+        <div [ngClass]="{'col-md-12': !ticket.id, 'col-md-6': ticket.id}" *ngIf="!loading">
             <form #form="ngForm">
                 <div class="card">
                     <div class="card-header card-header-primary">
@@ -11,14 +11,22 @@
                         <p class="card-category" *ngIf="!ticket.id">Criar novo Ticket</p>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3" *ngIf="ticket.id">
-                                Estado
+                        <div class="row" *ngIf="ticket.id">
+                            <div class="col-md-3">
+                                <b>Estado:</b><span>{{ticket.state}}</span>
                             </div>
-                            <div class="col-md-9" *ngIf="ticket.id">
-                                Colaborador
+                            <div class="col-md-9">
+                                <b>Colaborador:</b><span>{{ticket.collaboratorName}}</span>
                             </div>
-                            <mat-divider *ngIf="ticket.id"></mat-divider>
+                            <mat-divider></mat-divider>
+                            <div class="col-md-6" style="margin-top: 5px;">
+                                <b>Assunto:</b><span>{{ticket.subject}}</span>
+                            </div>
+                            <div class="col-md-12" style="margin-top: 5px;">
+                                <b>Descrição:</b><span>{{ticket.description}}</span>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="!ticket.id">
                             <div class="col-md-6">
                                 <mat-form-field class="example-full-width">
                                     <input matInput #subject="ngModel" name="subject" [(ngModel)]="ticket.subject"
@@ -44,7 +52,7 @@
                             Gravar
                         </button>
                         <button mat-raised-button class="btn btn-default btn-sm mat-raised-button pointer pull-right"
-                            routerLinkActive="active" [routerLink]="['/controlled-zone/list']">
+                            routerLinkActive="active" [routerLink]="['/controlled-zone/list']" *ngIf="!ticket.id">
                             <i class="material-icons">cancel</i>
                             Cancelar
                         </button>

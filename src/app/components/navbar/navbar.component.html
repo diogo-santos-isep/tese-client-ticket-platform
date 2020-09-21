@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
-        <a class="navbar-wrapper" [routerLink]="['/entryPage']" routerLinkActive="active">
+        <a class="navbar-wrapper" [routerLink]="['/dashboard']" routerLinkActive="active">
             <!-- <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a> -->
             {{configurations.applicationName}}
         </a>
@@ -14,6 +14,9 @@
             <ul class="navbar-nav">
                 <a class="nav-link" [routerLink]="['/ticket/list']" routerLinkActive="active">
                     <span>Tickets</span>
+                </a>
+                <a class="nav-link" href="#" (click)="createNewTicket()">
+                    <span>Criar Ticket</span>
                 </a>
                 <!-- <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
