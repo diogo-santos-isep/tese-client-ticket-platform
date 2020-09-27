@@ -7,6 +7,7 @@ import { GlobalHttpService } from 'app/global-http.service';
 import { GlobalService } from 'app/global.service';
 import { Configuration } from 'models/Configuration';
 import { TicketsCreateDialogComponent } from 'app/tickets/tickets-create/tickets-create-dialog/tickets-create-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-navbar',
@@ -22,16 +23,9 @@ export class NavbarComponent implements OnInit {
     configurations: Configuration;
     user: any;
 
-    constructor(location: Location, private element: ElementRef, private router: Router, private dialog: MatDialog) {
+    constructor(location: Location, private element: ElementRef, private router: Router) {
         this.location = location;
         this.sidebarVisible = false;
-    }
-
-    createNewTicket(){
-      const dialogRef = this.dialog.open(TicketsCreateDialogComponent);
-  
-      dialogRef.afterClosed().subscribe(result => {
-      });
     }
 
     getUser() {

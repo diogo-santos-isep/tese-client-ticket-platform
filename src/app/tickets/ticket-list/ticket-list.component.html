@@ -12,11 +12,12 @@
                         <table class="table table-hover" style="margin-bottom: 0;">
                             <thead>
                                 <tr>
-                                    <th style="width:10%">Código</th>
-                                    <th style="width:20%">Assunto</th>
-                                    <th style="width:25%">Descrição</th>
-                                    <th style="width:25%">Estado</th>
-                                    <th style="width:20%">Colaborador Atribuído</th>
+                                    <th style="width:10%;font-size: 15px;">Código</th>
+                                    <th style="width:10%;font-size: 15px;">Data</th>
+                                    <th style="width:10%;font-size: 15px;">Assunto</th>
+                                    <th style="width:25%;font-size: 15px;">Descrição</th>
+                                    <th style="width:25%;font-size: 15px;">Estado</th>
+                                    <th style="width:20%;font-size: 15px;">Colaborador Atribuído</th>
                                 </tr>
                             </thead>
                             <tbody *ngIf="!loading">
@@ -25,10 +26,13 @@
                                         Não existem tickets criados por si
                                     </td>
                                 </tr>
-                                <tr *ngFor="let row of list"  style="cursor:pointer" [routerLink]="['/ticket/save', row.id]">
+                                <tr *ngFor="let row of list"  style="cursor:pointer;font-size: 12px;" [routerLink]="['/ticket/save', row.id]">
                                     <td>{{row.code}}</td>
+                                    <td>{{row.date | date:'dd/MM/yyyy HH:mm'}}</td>
                                     <td>{{row.subject}}</td>
-                                    <td>{{row.description}}</td>
+                                    <td>
+                                        {{row.description | slice:0:50}}
+                                    </td>
                                     <td>{{stateEnum.enum[row.state]}}</td>
                                     <td>{{row.collaboratorName}}</td>
                                 </tr>

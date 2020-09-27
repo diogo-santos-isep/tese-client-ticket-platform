@@ -34,6 +34,9 @@ export class GlobalService {
   static setToken(access_token: string) {
     return localStorage.setItem(this.TOKENSTORAGE, access_token) != null;
   }
+  static getImage(loggedUser: any) {
+    return './assets/img/user.png';
+  }
 
   constructor() { }
 }

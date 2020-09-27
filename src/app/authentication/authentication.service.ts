@@ -7,7 +7,7 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  SCOPES: string = "department configuration ticket.client ticket.create";
+  SCOPES: string = "department configuration ticket.client ticket.create ticket.chat";
   LOGINURL: string = "connect/token";
 
   constructor(private _http: HttpClient, private _globalHttp: GlobalHttpService) { }

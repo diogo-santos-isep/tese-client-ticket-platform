@@ -12,6 +12,7 @@ export class GlobalHttpService {
   stsUrl: string = "https://localhost:5000/";
   configurationsServiceUrl: string = "https://localhost:5004/";
   ticketInfoServiceUrl: string = "https://localhost:5006/";
+  ticketChatMessageServiceUrl: string = "https://localhost:5010/";
 
   getRequestOptions() {
     var token = GlobalService.getToken();

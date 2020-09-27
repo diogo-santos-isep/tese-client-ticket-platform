@@ -1,64 +1,144 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div [ngClass]="{'col-md-12': !ticket.id, 'col-md-6': ticket.id}" *ngIf="!loading">
-            <form #form="ngForm">
-                <div class="card">
+        <div class="row" *ngIf="!loading">
+            <div [ngClass]="{'col-md-12': !ticket.id, 'col-md-8': ticket.id}">
+                <form #form="ngForm">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title">
+                                Ticket
+                            </h4>
+                            <p class="card-category" *ngIf="ticket.id">Editar Ticket {{ticket.code}}</p>
+                            <p class="card-category" *ngIf="!ticket.id">Criar novo Ticket</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" *ngIf="ticket.id">
+                                <div class="col-md-3">
+                                    <b>Estado:</b><span>{{stateEnum.enum[ticket.state]}}</span>
+                                </div>
+                                <div class="col-md-9">
+                                    <b>Colaborador:</b><span>{{ticket.collaboratorName}}</span>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="col-md-6" style="margin-top: 5px;">
+                                    <b>Assunto:</b><span>{{ticket.subject}}</span>
+                                </div>
+                                <div class="col-md-12" style="margin-top: 5px;">
+                                    <b>Descrição:</b><span>{{ticket.description}}</span>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="!ticket.id">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput #subject="ngModel" name="subject" [(ngModel)]="ticket.subject"
+                                            type="text" placeholder="Assunto" required [disabled]="ticket.id">
+                                        <mat-error *ngIf="subject.touched && subject.invalid">
+                                            Campo inválido
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput #description="ngModel" name="description"
+                                            [(ngModel)]="ticket.description" type="text" placeholder="Descrição"
+                                            [disabled]="ticket.id"></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer" style="display: block;">
+                            <button mat-raised-button
+                                class="btn btn-primary btn-sm mat-raised-button pointer pull-right"
+                                [disabled]="!form.valid" (click)="submit()" *ngIf="!ticket.id">
+                                <i class="material-icons">save</i>
+                                Gravar
+                            </button>
+                            <button mat-raised-button
+                                class="btn btn-default btn-sm mat-raised-button pointer pull-right"
+                                routerLinkActive="active" [routerLink]="['/controlled-zone/list']" *ngIf="!ticket.id">
+                                <i class="material-icons">cancel</i>
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4" *ngIf="ticket.id">
+                <div class="card" *ngIf="!messagesLoading" style="height: 75vh;">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title">
-                            Ticket
+                            Chat
                         </h4>
-                        <p class="card-category" *ngIf="ticket.id">Editar Ticket {{ticket.code}}</p>
-                        <p class="card-category" *ngIf="!ticket.id">Criar novo Ticket</p>
                     </div>
-                    <div class="card-body">
-                        <div class="row" *ngIf="ticket.id">
-                            <div class="col-md-3">
-                                <b>Estado:</b><span>{{ticket.state}}</span>
-                            </div>
-                            <div class="col-md-9">
-                                <b>Colaborador:</b><span>{{ticket.collaboratorName}}</span>
-                            </div>
-                            <mat-divider></mat-divider>
-                            <div class="col-md-6" style="margin-top: 5px;">
-                                <b>Assunto:</b><span>{{ticket.subject}}</span>
-                            </div>
-                            <div class="col-md-12" style="margin-top: 5px;">
-                                <b>Descrição:</b><span>{{ticket.description}}</span>
-                            </div>
-                        </div>
-                        <div class="row" *ngIf="!ticket.id">
-                            <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                    <input matInput #subject="ngModel" name="subject" [(ngModel)]="ticket.subject"
-                                        type="text" placeholder="Assunto" required [disabled]="ticket.id">
-                                    <mat-error *ngIf="subject.touched && subject.invalid">
-                                        Campo inválido
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-12">
-                                <mat-form-field class="example-full-width">
-                                    <textarea matInput #description="ngModel" name="description"
-                                        [(ngModel)]="ticket.description" type="text" placeholder="Descrição"
-                                        [disabled]="ticket.id"></textarea>
-                                </mat-form-field>
-                            </div>
+                    <div class="card-body" #scrollMe [scrollTop]="scrollMe.scrollHeight"
+                        style="overflow: auto;font-size: 90%;line-height: 150%;">
+                        <div class="table-responsive">
+                            <table class="table" style="margin-bottom: 0;">
+                                <tbody>
+                                    <tr *ngIf="messagesList.length == 0">
+                                        <td colspan="100" style="text-align:center">
+                                            Não existem mensagens
+                                        </td>
+                                    </tr>
+                                    <tr *ngFor="let row of messagesList">
+                                        <td colspan="100">
+                                            <ng-container *ngIf="!row.clientId; then received; else sent">
+                                            </ng-container>
+                                            <ng-template #received>
+                                                <div style="float:left">
+                                                    <div>
+                                                        <img [src]="getImage()"
+                                                            style="max-width: 25px;max-height: 25px;" />
+                                                        <span>&nbsp;{{row.userName}}</span>
+                                                        <mat-hint>&nbsp; ({{row.date | date:'dd/MM/yyyy HH:mm'}})
+                                                        </mat-hint>
+                                                    </div>
+                                                    <div class="message-received">
+                                                        {{row.message}}
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                            <ng-template #sent>
+                                                <div style="float:right">
+                                                    <div style="float:right">
+                                                        <img [src]="getImage()"
+                                                            style="max-width: 25px;max-height: 25px;" />
+                                                        <span>&nbsp;{{row.clientName}}</span>
+                                                        <mat-hint>&nbsp; ({{row.date | date:'dd/MM/yyyy HH:mm'}})
+                                                        </mat-hint>
+                                                    </div>
+                                                    <div class="message-sent" style="background-color: primary;">
+                                                        {{row.message}}
+                                                    </div>
+                                                </div>
+                                            </ng-template>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <div class="card-footer" style="display: block;">
-                        <button mat-raised-button class="btn btn-primary btn-sm mat-raised-button pointer pull-right"
-                            [disabled]="!form.valid" (click)="submit()" *ngIf="!ticket.id">
-                            <i class="material-icons">save</i>
-                            Gravar
-                        </button>
-                        <button mat-raised-button class="btn btn-default btn-sm mat-raised-button pointer pull-right"
-                            routerLinkActive="active" [routerLink]="['/controlled-zone/list']" *ngIf="!ticket.id">
-                            <i class="material-icons">cancel</i>
-                            Cancelar
-                        </button>
+                    <div class="card-footer">
+                        <form style="width: 100%;">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput #message123="ngModel" name="message123" [(ngModel)]="message"
+                                            type="text" placeholder="Escrever mensagem"></textarea>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2" style="vertical-align: middle;margin: auto;">
+                                    <button mat-raised-button
+                                        class="btn btn-primary btn-sm mat-raised-button pointer pull-right"
+                                        [disabled]="!form.valid" (click)="sendMessage()">
+                                        <i class="material-icons">send</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>

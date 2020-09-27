@@ -19,6 +19,8 @@ import { TicketListComponent } from 'app/tickets/ticket-list/ticket-list.compone
 import { TicketsCreateDialogComponent } from 'app/tickets/tickets-create/tickets-create-dialog/tickets-create-dialog.component';
 import { TicketsCreateFromMessageComponent } from 'app/tickets/tickets-create/tickets-create-from-message/tickets-create-from-message.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { ChatMessageService } from 'app/tickets/chat-message.service';
+import { TicketService } from 'app/tickets/ticket.service';
 
 @NgModule({
   imports: [
@@ -45,7 +47,7 @@ import {MatDividerModule} from '@angular/material/divider';
     TicketsCreateFromMessageComponent,
   ],
   entryComponents:[TicketsCreateDialogComponent],
-  providers:[]
+  providers:[ChatMessageService, TicketService]
 })
 
 export class AdminLayoutModule {}
